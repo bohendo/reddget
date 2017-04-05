@@ -1,0 +1,13 @@
+{
+  "name": "reddget",
+  "version": "1.0.0",
+  "description": "",
+  "main": "reddget.js",
+  "author": "Bo Henderson",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.2",
+    "q": "^1.4.1",
+    "x-ray": "^2.3.0"
+  }
+}
