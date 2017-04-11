@@ -21,7 +21,7 @@ var log = true ? console.log : function () { };
 
 
 var nPagesToCheck = 5;
-var importFolder = '/home/bo/i/';
+var importFolder = '/home/bo/Documents/imports';
 var subreddits = [
     'netsec',
     'technology',
@@ -172,6 +172,19 @@ Date.prototype.getWeek = function () {
 
 
 /**
+  *  creates a folder if it doesn't exist
+  **/
+var mkdir = function (folder) {
+    try {
+        fs.accessSync(folder);
+    }
+    catch (err) {
+        fs.mkdirSync(folder);
+    }
+};
+
+
+/**
   *  Returns a string ie "/home/bo/n/i/16/11/24"
   *  May create new directories on the system
   **/
@@ -181,24 +194,8 @@ var getFolder = function () {
     var monthfolder = yearfolder +
         (today.getMonth() + 1).pad(2, '0') + '/';
     var dayfolder = monthfolder + today.getDate().pad(2, '0') + '/';
-    try {
-        fs.accessSync(yearfolder);
-    }
-    catch (err) {
-        fs.mkdirSync(yearfolder);
-    }
-    try {
-        fs.accessSync(monthfolder);
-    }
-    catch (err) {
-        fs.mkdirSync(monthfolder);
-    }
-    try {
-        fs.accessSync(dayfolder);
-    }
-    catch (err) {
-        fs.mkdirSync(dayfolder);
-    }
+    // create any folders that don't already exist
+    mkdir(yearfolder); mkdir(monthfolder); mkdir(dayfolder);
     return dayfolder;
 };
 
@@ -309,7 +306,7 @@ var scrapePost = function (lol) {
     try {
         cache = fs.readFileSync(getFolder().slice(0, -9) + '.cache', 'utf-8');
     }
-    catch (err) { }
+    catch (err) { cache = ""; }
     // for every link in our list of links, check if we've already scraped it
     for (var i = 0; i < lol.length; i++) {
         var unique_name = lol[i].match(/comments\/([a-zA-Z0-9]{5,7})\//)[1];
