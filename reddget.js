@@ -21,7 +21,7 @@ var log = true ? console.log : function () { };
 
 
 var nPagesToCheck = 5;
-var importFolder = '/home/bo/Documents/imports';
+var importFolder = '/home/bo/Documents/imports/';
 var subreddits = [
     'netsec',
     'technology',
@@ -185,7 +185,7 @@ var mkdir = function (folder) {
 
 
 /**
-  *  Returns a string ie "/home/bo/n/i/16/11/24"
+  *  Returns a string ie importFolder + "/16/11/24"
   *  May create new directories on the system
   **/
 var getFolder = function () {
