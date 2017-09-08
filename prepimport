@@ -1,0 +1,15 @@
+#!/bin/bash
+
+sc="/home/bo/i"
+dir="/home/bo/Dropbox/Documents/imports/$(date +%y)/$(date +%m)/$(date +%d)"
+
+# old subreddit index files are bulky and no longer needed
+find $sc -type f -name ".*-index" -exec rm {} +
+
+# create a new import folder and point our shortcut at it
+mkdir $dir &> /dev/null
+ln -sfT "$dir" "$sc"
+
+# use my webscraper to get an updated set of subreddit index files
+reddget prep > /dev/null
+

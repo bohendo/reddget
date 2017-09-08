@@ -37,6 +37,7 @@ var goodFlair = [
 var muteAuthor = [
 ];
 
+subreddits.push('theredpill'); goodFlair.push('flair-endorsementsenior'); goodFlair.push('flair-endorsementvanguard'); muteAuthor.push('Neoreactionsafe');
 
 /************************************************************/
 // General Utility Functions
